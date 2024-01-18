@@ -1,0 +1,42 @@
+﻿@using FruitMVC.Models
+@model List<Fruit>
+
+@{
+    int count = 0;
+}
+
+<div class="container">
+
+<h1>FRUITS</h1>
+
+<a class="btn btn-primary" style="margin-left:80%"  asp-controller="fruit" asp-action="create">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Image</th>
+                <th scope="col">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Choises</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                count++;
+            <tr>
+                <th scope="row">@count</th>
+            <th scope="row">@item.Id</th>
+            <th>@item.Title</th>
+            <th>@item.Category</th>
+            <td><img src="~/Upload/@item.ImgUrl"/></td>
+            <td>
+                <a class="btn btn-warning" asp-controller="fruit" asp-action="update" asp-route-id="@item.Id">Update</a>
+                <a class="btn btn-danger" asp-controller="fruit" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>
